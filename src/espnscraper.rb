@@ -73,7 +73,7 @@ end
 
 # Only passing in a Player object here - Ruby not staticly typed so mentioning it here
 def save_to_csv(players)
-    CSV.open('collegeQBstats.csv', 'wb') do |csv|
+    CSV.open('../docs/collegeQBstats.csv', 'wb') do |csv|
         csv << ["NAME", "POS", "CMP", "ATT", "CMP%", "YDS", "AVG", "LNG", "TD", "INT", "SACK", "RTG"]
         for i in 0..players.length-1
             csv << [players[i].name, players[i].college, players[i].pos, players[i].cmp, players[i].att, players[i].cmp_pct, 
