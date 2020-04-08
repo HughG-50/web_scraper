@@ -27,7 +27,6 @@ def crypto_job_scraper()
     response = HTTParty.get(url)
     # parsed the data into a format that we can use to get data from
     # we are parsing the response body, and not the response itself
-    # job_listings = []
     parsed_response = Nokogiri::HTML(response.body)
     job_listings = parsed_response.css('article div.dtc.v-top')
     
@@ -45,19 +44,10 @@ def crypto_job_scraper()
     end
 
     jobs = []
-    # Populating an object?
+    # Populating the jobs array with the job objects
     for i in 0..job_companies.length-1
 
         job_info_str_arr = job_info_list_in_rows_str_arr[i].split(/\W+/)
-        
-        # This is the syntax the example used - not sure what it means or why I can't get it to work this way
-        # job = {
-        #     company: job_companies[i].text,
-        #     title: job_titles[i].text,
-        #     listing_url: job_titles[i].attributes["href"].value,
-        #     location: job_info_str_arr[1],
-        #     category: job_info_str_arr[2]
-        # }
         company = job_companies[i].text
         title = job_titles[i].text
         listing_url = job_titles[i].attributes["href"].value
